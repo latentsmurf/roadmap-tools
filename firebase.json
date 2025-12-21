@@ -1,0 +1,11 @@
+{
+    "hosting": {
+        "site": "roadmap-tools",
+        "source": ".",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ]
+    }
+}

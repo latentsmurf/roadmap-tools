@@ -1,64 +1,39 @@
-# Product Requirements Document (PRD): Embed-first Public Roadmap Platform
+# Product Requirements Document (PRD): Roadmap.tools
 
-## 1. Problem Statement
-SaaS, devtools, game studios, and marketplace platforms need a way to share their product direction with users to build trust and gather feedback. Existing solutions are often:
-- **Overwhelming**: They dump hundreds of features on a board, confusing users.
-- **Disconnected**: They look like a separate 3rd-party tool (e.g., Canny, Trello) rather than a native part of the product.
-- **Stale**: They are hard to keep updated and lack "trust signals" that manage user expectations about certainty and timing.
+## 1. Vision
+**Roadmap.tools** is an embed-first public roadmap platform designed for SaaS, DevTools, and Game Studios. It prioritizes "anti-overwhelm" UI and trust-building through explicit confidence signaling.
 
 ## 2. Target Audience
-- **Primary**: Early-stage SaaS, DevTools, Game Studios, and Marketplaces.
-- **Users**:
-    - **Publishers**: Product Managers, Founders who curate the roadmap.
-    - **Viewers**: End-users, customers, community members who browse and vote.
+- **Product Managers**: Curating the public roadmap.
+- **End Users**: Viewing direction and following specific features.
 
-## 3. Goals
-- **Embed-First**: The hero experience is the embedded component, not the destination portal. It must look brand-native.
-- **Anti-Overwhelm**: Use "Progressive Disclosure" (Snapshot -> Standard -> Deep views) to show only what's necessary.
-- **High Trust**: Explicitly communicate confidence levels (Tentative vs. Likely vs. Confident) and stage of development.
-- **Feedback Loop**: Allow users to follow notification changes without forcing them to create heavy accounts (email-first or lightweight auth).
-
-## 4. Non-Goals
-- **Project Management**: This is NOT a Jira/Linear replacement. It is a communication layer *on top* of those tools.
-- **Complex Weighted Scoring**: We are not building RICE scoring or complex prioritization frameworks for internal use in the MVP.
-- **Rich Text Editor**: For MVP, item descriptions are succinct. No Notion-like doc editing.
-
-## 5. MVP Feature Set
-
-### Core UX: Zoom Levels
-| Level | Description | Key Features |
-| :--- | :--- | :--- |
-| **Snapshot** | High-level marketing view | 10-20 curated items, minimal UI, "Featured" row. |
-| **Standard** | Balanced view | Column/Kanban board, basic search, up to 3 primary filters. |
-| **Deep** | Power user view | Full taxonomy, advanced filtering, archive access, export. |
+## 3. Core Features
+### Embed-First Display
+- A Web Component (`<roadmap-portal>`) that can be dropped into any site.
+- Supports multiple zoom levels: Snapshot, Standard, Deep.
 
 ### Views
-1.  **Board View**: Columns (Now/Next/Later or By Domain).
-2.  **Timeline View**: Quarter-based or Version-based high-level timeline.
-3.  **Changelog View**: Reverse chronological list of shipped items.
+- **List View**: Standard grid of cards.
+- **Board View**: Kanban-style grouping by status.
+- **Timeline View**: "Now", "Next", "Later" time-based grouping.
+- **Changelog**: Reverse chronological list of shipped items.
 
-### Trust & Metadata
--   **Confidence**: Tentative (Low), Likely (Medium), Confident (High).
--   **Stage**: Exploring, Building, Testing, Shipping.
--   **Disclaimer**: "Subject to change" built-in component.
--   **Last Updated**: Visible timestamps on items.
+### Engagement Layer
+- **Voting**: Simple upvote system.
+- **Subscribing**: Email-based follows for item updates.
 
-### Feedback Loop
--   **Vote/Like**: Simple upvote signal.
--   **Follow**: "Notify me when this changes" (Critical feature).
--   **Notifications**: Email alerts for Status Change, Shipped, Comment (optional).
+### Admin Tools
+- Roadmap management at `/admin`.
+- Secure authentication via Auth.js (Google Provider).
+- Firestore-backed data storage.
 
-### Embed System
--   **Web Component**: `<roadmap-portal>` that works in React, Vue, Svelte, plain HTML.
--   **Theming**: CSS Variables for colors, fonts, radii, spacing.
--   **Style Packs**: Pre-configured themes (Minimal SaaS, Neon Night, Glass, etc.).
+## 4. Technical Stack
+- **Framework**: Next.js 15 (App Router).
+- **Styling**: Tailwind CSS + shadcn/ui.
+- **Database/Auth**: Firebase Firestore + Auth.js.
+- **URL**: www.roadmap.tools
 
-## 6. V2 Concepts (Future)
--   **Audience Segmentation**: Buyer vs. Seller views, Enterprise vs. SMB.
--   **Single-Sign On (SSO)**: Enterprise auth integration.
--   **Bi-directional Sync**: Sync status back to Linear/Jira.
-
-## 7. Assumptions
--   Publishers are comfortable using a minimal Admin UI to manage items.
--   Viewers are willing to provide an email address to "Follow" an item.
--   The "Snapshot" view will be the most used embed type for marketing pages.
+## 5. Success Metrics
+- Integration ease (minutes to embed).
+- User engagement (votes/follows).
+- Reduced internal support burden (fewer "when is X shipping?" questions).

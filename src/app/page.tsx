@@ -1,65 +1,124 @@
-import Image from "next/image";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Box, Layers, ShieldCheck, Zap } from "lucide-react"
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/20">
+      {/* Navigation */}
+      <header className="px-6 lg:px-10 h-20 flex items-center justify-between sticky top-0 bg-background/80 backdrop-blur-md z-50 border-b border-border/40">
+        <Link className="flex items-center justify-center gap-2 group" href="#">
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-primary-foreground transform group-hover:rotate-6 transition-transform">
+            <Layers className="w-6 h-6" />
+          </div>
+          <span className="text-xl font-bold tracking-tight">Roadmap<span className="text-primary">.tools</span></span>
+        </Link>
+        <nav className="hidden md:flex gap-8">
+          <Link className="text-sm font-medium hover:text-primary transition-colors" href="#features">Features</Link>
+          <Link className="text-sm font-medium hover:text-primary transition-colors" href="/embed-demo">Demo</Link>
+          <Link className="text-sm font-medium hover:text-primary transition-colors" href="https://docs.roadmap.tools">Docs</Link>
+        </nav>
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" asChild className="hidden sm:flex">
+            <Link href="/login">Sign In</Link>
+          </Button>
+          <Button asChild className="rounded-full px-6 shadow-lg shadow-primary/20">
+            <Link href="/admin">Get Started</Link>
+          </Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </header>
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative py-24 lg:py-32 overflow-hidden border-b">
+          <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))] -z-10" />
+          <div className="container px-4 md:px-6 mx-auto text-center space-y-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase animate-pulse">
+              <Zap className="w-3 h-3" />
+              Embed-First Platform
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter max-w-4xl mx-auto leading-[1.1]">
+              Share your direction. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">Build radical trust.</span>
+            </h1>
+            <p className="max-w-2xl mx-auto text-xl text-muted-foreground leading-relaxed">
+              The premium roadmap platform for SaaS. Beautiful embeds, multi-level views, and zero-config feedback loops. Stop keeping users in the dark.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" className="h-14 px-10 text-lg rounded-full group" asChild>
+                <Link href="/admin">
+                  Create Your Roadmap
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="h-14 px-10 text-lg rounded-full" asChild>
+                <Link href="/embed-demo">Watch Demo</Link>
+              </Button>
+            </div>
+            <div className="pt-12 relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-purple-500/30 blur-2xl opacity-20" />
+              <div className="relative bg-card border rounded-2xl shadow-2xl p-2 max-w-5xl mx-auto overflow-hidden">
+                <img
+                  src="/hero-preview.png"
+                  alt="Roadmap Dashboard Preview"
+                  className="w-full h-auto rounded-xl shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section id="features" className="py-24 bg-muted/30">
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="grid md:grid-cols-3 gap-12">
+              <div className="space-y-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+                  <Box className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold">Zoomable Roadmap</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  From high-level snapshots to deep-dive technical specs. Let users choose the level of detail they need.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold">1ms Embeds</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Our lightweight Web Component loads instantly in any framework. Brand it with CSS variables to make it yours.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold">Trust Signals</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Explicit confidence levels and status updates manage user expectations and reduce support tickets.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t py-12 px-6 lg:px-10">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-2">
+            <Layers className="w-5 h-5 text-primary" />
+            <span className="font-bold">Roadmap.tools</span>
+          </div>
+          <p className="text-sm text-muted-foreground">© 2025 Antigravity. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link className="text-sm hover:underline" href="#">Privacy</Link>
+            <Link className="text-sm hover:underline" href="#">Terms</Link>
+            <Link className="text-sm hover:underline" href="#">Twitter</Link>
+          </div>
+        </div>
+      </footer>
     </div>
-  );
+  )
 }

@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+roadmap-tools-firebase-adminsdk-fbsvc-fd9b0634cf.json
+.firebase
+.firebase_old
