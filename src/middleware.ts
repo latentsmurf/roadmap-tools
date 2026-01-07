@@ -3,10 +3,10 @@ import authConfig from "./auth.config"
 
 const { auth } = NextAuth(authConfig)
 
-export default auth((req) => {
-    // Logic handled in auth.config.ts authorized callback
+export default auth(() => {
+  // Logic handled in auth.config.ts authorized callback
 })
 
 export const config = {
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 }

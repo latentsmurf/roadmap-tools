@@ -1,20 +1,17 @@
 class RoadmapPortal extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
+  constructor() {
+    super()
+    this.attachShadow({ mode: "open" })
+  }
 
-    async connectedCallback() {
-        const slug = this.getAttribute('slug');
-        const theme = this.getAttribute('theme') || 'light';
-        const zoom = this.getAttribute('zoom') || 'snapshot';
-        const workspace = this.getAttribute('workspace') || 'acme';
+  async connectedCallback() {
+    const slug = this.getAttribute("slug")
+    const zoom = this.getAttribute("zoom") || "snapshot"
+    const workspace = this.getAttribute("workspace") || "acme"
 
-        // URL of the API on roadmap.tools
-        const apiUrl = `https://www.roadmap.tools/api/v1/roadmaps/${slug}`;
-        const embedUrl = `https://www.roadmap.tools/r/${workspace}/${slug}?embed=true&zoom=${zoom}`;
+    const embedUrl = `https://www.roadmap.tools/r/${workspace}/${slug}?embed=true&zoom=${zoom}`
 
-        this.shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
             <style>
                 :host {
                     display: block;
@@ -32,8 +29,8 @@ class RoadmapPortal extends HTMLElement {
                 }
             </style>
             <iframe src="${embedUrl}" title="Product Roadmap"></iframe>
-        `;
-    }
+        `
+  }
 }
 
-customElements.define('roadmap-portal', RoadmapPortal);
+customElements.define("roadmap-portal", RoadmapPortal)
